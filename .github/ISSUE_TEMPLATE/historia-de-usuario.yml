@@ -32,7 +32,7 @@ body:
     validations:
       required: true
   - type: textarea
-    id: criterios_aceptación
+    id: criterios_aceptacion
     attributes:
       label: Criterios de Aceptación (Checklist)
       placeholder: |
