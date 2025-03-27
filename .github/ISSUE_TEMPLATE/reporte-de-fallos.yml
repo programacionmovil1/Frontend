@@ -1,6 +1,7 @@
 name: Reportes de Bugs
 description: Reporte de un bug
-labels: ["bug"]
+title: "[Describe tu problema en frases cortas]"
+labels: ["bug", "ayuda requerida"]
 body:
   - type: markdown
     attributes:
@@ -37,7 +38,8 @@ body:
     attributes:
       label: "¿Le gustaría trabajar en este asunto?"
       options:
-        - "Yes"
+        - "Si"
+        - "No"
   - type: markdown
     attributes:
       value: |
