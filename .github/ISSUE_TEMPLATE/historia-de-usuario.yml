@@ -41,16 +41,6 @@ body:
         - [ ] El filtrado debe funcionar en móvil y escritorio
     validations:
       required: true
-  - type: dropdown
-    id: prioridad
-    attributes:
-      label: Prioridad
-      options:
-        - "Alta"
-        - "Media"
-        - "Baja"
-    validations:
-      required: true
   - type: textarea
     id: contexto
     attributes:
