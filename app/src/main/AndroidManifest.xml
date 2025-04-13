@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LimbusApp"
         tools:targetApi="31">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -19,10 +20,20 @@
             android:theme="@style/Theme.LimbusApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".RegistrationActivity"
+            android:label="Registro de Institución"
+            android:exported="false" />
+
+        <activity
+            android:name=".InstitutionsListActivity"
+            android:label="Instituciones Registradas"
+            android:exported="false" />
+
     </application>
 
 </manifest>
