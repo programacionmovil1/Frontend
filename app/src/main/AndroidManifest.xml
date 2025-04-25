@@ -35,11 +35,35 @@
             android:exported="false" />
 
         <activity
+            android:name=".PersonalInfoActivity"
+            android:label="Información personal"
+            android:exported="false" />
+
+        <activity
+            android:name=".RiskFactorsActivity"
+            android:label="Factores de riesgo"
+            android:exported="false" />
+        <activity
+            android:name=".DietaryPreferencesActivity"
+            android:label="Preferencias alimentarias"
+            android:exported="false" />
+
+
+
+        <activity
+            android:name=".HealthMetricsActivity"
+            android:label="Métricas de salud"
+            android:exported="false" />
+
+        <activity
+            android:name=".ProfileCompletedActivity"
+            android:label="Perfil Completado"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:label="Iniciar Sesión"
             android:exported="false" />
 
-        <!-- Keeping InstitutionsListActivity but removing the institution registration -->
         <activity
             android:name=".InstitutionsListActivity"
             android:label="Instituciones Registradas"

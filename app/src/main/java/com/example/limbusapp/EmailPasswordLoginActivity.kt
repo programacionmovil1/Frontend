@@ -1,5 +1,6 @@
 package com.example.limbusapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -35,7 +36,10 @@ class EmailPasswordLoginActivity : ComponentActivity() {
                                 "Procesando datos: $email",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            // Navigate to next screen or process registration
+
+                            // Navigate to personal info screen
+                            val intent = Intent(this, PersonalInfoActivity::class.java)
+                            startActivity(intent)
                         }
                     )
                 }
@@ -119,8 +123,6 @@ fun EmailPasswordLoginScreen(onLoginSubmit: (String, String) -> Unit) {
                 containerColor = Color(0xFF304FFE) // Deep blue color as in the screenshot
             )
         ) {
-            // The button in the image doesn't appear to have text,
-            // but we can add it for better UX
             Text(
                 text = "Ingresar",
                 color = Color.White
