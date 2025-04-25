@@ -4,24 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.limbusapp.ui.theme.LimbusAppTheme
@@ -29,21 +22,22 @@ import com.example.limbusapp.ui.theme.LimbusAppTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             LimbusAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MainScreen(
-                        modifier = Modifier.padding(innerPadding),
-                        onRegisterInstitutionClick = {
-                            val intent = Intent(this, RegistrationActivity::class.java)
-                            startActivity(intent)
-                        },
-                        onViewInstitutionsClick = {
-                            val intent = Intent(this, InstitutionsListActivity::class.java)
-                            startActivity(intent)
-                        }
-                    )
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    WelcomeScreen(onStartClicked = {
+                        // Launch the CreateAccountActivity instead of institution registration
+                        val intent = Intent(this, CreateAccountActivity::class.java)
+                        startActivity(intent)
+                    }, onLoginClicked = {
+                        // Handle login for existing users
+                        // You could create a separate LoginActivity for this
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                    })
                 }
             }
         }
@@ -51,54 +45,58 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(
-    modifier: Modifier = Modifier,
-    onRegisterInstitutionClick: () -> Unit,
-    onViewInstitutionsClick: () -> Unit
-) {
+fun WelcomeScreen(onStartClicked: () -> Unit, onLoginClicked: () -> Unit) {
     Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
+        // Logo - replace R.drawable.logo with your actual logo resource
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "Limbus Logo",
+            modifier = Modifier
+                .size(150.dp)
+                .padding(bottom = 16.dp),
+            contentScale = ContentScale.Fit
+        )
+
         Text(
-            text = "Limbus App",
-            fontSize = 24.sp,
+            text = "LIMBUS",
+            fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary
+            modifier = Modifier.padding(bottom = 8.dp)
         )
 
-        Spacer(modifier = Modifier.height(32.dp))
-
-        Button(
-            onClick = onRegisterInstitutionClick,
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF304FFE)
-            )
-        ) {
-            Text("Registrar Institución", Modifier.padding(8.dp))
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = onViewInstitutionsClick,
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF304FFE)
-            )
-        ) {
-            Text("Ver Instituciones Registradas", Modifier.padding(8.dp))
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun MainScreenPreview() {
-    LimbusAppTheme {
-        MainScreen(
-            onRegisterInstitutionClick = {},
-            onViewInstitutionsClick = {}
+        Text(
+            text = "Nutrición y bienestar\npersonalizada",
+            fontSize = 16.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(bottom = 32.dp)
         )
+
+        Button(
+            onClick = onStartClicked,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFFE91E63) // Pink color as in the screenshot
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 32.dp)
+        ) {
+            Text(
+                text = "Comenzar",
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
+        }
+
+        TextButton(
+            onClick = onLoginClicked,
+            modifier = Modifier.padding(top = 8.dp)
+        ) {
+            Text("¿Ya tienes cuenta? Iniciar sesión")
+        }
     }
 }

@@ -25,10 +25,21 @@
         </activity>
 
         <activity
-            android:name=".RegistrationActivity"
-            android:label="Registro de Institución"
+            android:name=".CreateAccountActivity"
+            android:label="Crear cuenta"
             android:exported="false" />
 
+        <activity
+            android:name=".EmailPasswordLoginActivity"
+            android:label="Ingresar datos"
+            android:exported="false" />
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="Iniciar Sesión"
+            android:exported="false" />
+
+        <!-- Keeping InstitutionsListActivity but removing the institution registration -->
         <activity
             android:name=".InstitutionsListActivity"
             android:label="Instituciones Registradas"
